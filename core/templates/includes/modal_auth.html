@@ -1,0 +1,49 @@
+<div class="modal fade" id="modal_auth" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modal_auth_label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal_auth_label">Авторизация</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <form method='POST' action="{% url 'accounts:login' %}" class='auth_form'>
+
+
+                            <div class="modal_auth_info">
+                            {% if messages %}
+
+
+                                {% for message in messages %}
+                                        {{ message }} 
+                                {% endfor %} 
+
+
+                            {% endif %}
+                            </div>
+
+
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="login" class="form-label">Логин</label>
+                                <input type="text" class="form-control" id="auth_login" name='username' required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Пароль</label>
+
+                                <input type="password" class="form-control" id="auth_password" name='password' required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Войти</button>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+<script>
+
+
+</script>

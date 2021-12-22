@@ -1,0 +1,76 @@
+<div class="top_nav">
+                <div class="logo">
+                    <span class='logo-for'>FOR</span><span class='logo-test'>TEST</span>
+                </div>
+
+                <div class="top-menu">
+
+                    <div class="row">
+
+                        <div class="col-xl-8 col-sm-12 col-md-12 col-lg-8 col-12">
+                            <div class="dropdown">
+                                <div class="select">
+                                    {% if user.is_authenticated %}
+                                        {% if current_subject_user %}
+                                            <span>{{ current_subject_user.title }}</span> 
+                                        {% elif subjects %}
+                                            <span>Выберите тему</span>
+                                        {% else %}
+                                            <span>Вы не добавили ни одного предмета</span>
+                                        {% endif %}
+                                    
+
+                                    {% else %}
+                                    <span>Чтобы выбрать тему необходимо авторизоваться</span>
+                                    {% endif %}
+                                    
+                                    <i class="fa fa-chevron-left"></i>
+                                </div>
+                                {% if user.is_authenticated %}
+                                <ul class="dropdown-menu">
+
+                                    {% csrf_token %}
+                                    {% if user.is_authenticated %}
+                                    
+                                    {% for subject in subjects %}
+                                        <li class='drop-item' data-pk={{ subject.pk }}>{{ subject.title }}</li>
+                                    {% endfor %}
+                                    {% else %}
+                                        <li>Чтобы выбрать предмет, необходимо авторизоваться</li>
+                                    {% endif %}
+                                </ul>
+                                {% endif %}
+                                
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                            <div class="nav_link">
+                                {% if user.is_authenticated %}
+                                <ul>
+                                    <li>{{ user.username }}</li>
+                                    <li><a href="{% url 'accounts:logout' %}">Выйти</a></li>
+                                </ul>
+                                {% else %}
+                                <ul>
+                                    <li><a href="#" data-bs-toggle="modal" data-bs-target="#modal_auth">Войти</a></li>
+                                    <li><a href="" data-bs-toggle='modal'
+                                            data-bs-target="#modal_reg">Зарегестрироваться</a></li>
+                                </ul>
+                                {% endif %}
+                                
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+
+
+            </div>

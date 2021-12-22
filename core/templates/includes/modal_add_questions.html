@@ -1,0 +1,31 @@
+<div class="modal fade" id="modal_add_subject" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modal_reg_label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal_reg_label">Добавить предмет</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <form method='POST' class='add_subject_form' action="{% url 'questions:add' %}">
+                            <div class="modal_reg_info">
+                            </div>
+
+
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="login" class="form-label">Название предмета</label>
+                                {{ add_subject.title}}
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Описание предмета</label>
+                                {{ add_subject.description}}
+                            </div>
+                            <button type="submit" class="btn btn-primary">Добавить предмет</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+    <title>Fortest</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="wrapper">
+            <!-- Navbar -->
+            <div class="top_nav">
+                <div class="logo">
+                    <span class='logo-for'>FOR</span><span class='logo-test'>TEST</span>
+                </div>
+
+                <div class="top-menu">
+
+                    <div class="row">
+
+                        <div class="col-xl-8 col-sm-12 col-md-12 col-lg-8 col-12">
+                            <div class="dropdown">
+                                <div class="select">
+                                    <span>Выберите тему</span>
+                                    <i class="fa fa-chevron-left"></i>
+                                </div>
+                                <input type="hidden" name="gender">
+                                <ul class="dropdown-menu">
+                                    <li id="male">Физика</li>
+                                    <li id="female">Информатика</li>
+                                </ul>
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                            <div class="nav_link">
+                                <ul>
+                                    <li><a href="#" data-bs-toggle="modal" data-bs-target="#modal_auth">Войти</a></li>
+                                    <li><a href="" data-bs-toggle='modal'
+                                            data-bs-target="#modal_reg">Зарегестрироваться</a></li>
+                                </ul>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+
+
+            </div>
+            <!-- end navbar -->
+
+
+            <div class="row">
+
+                <!-- Main Content -->
+                <div class="col-12 col-lg-8 col-xl-8 col-sm-12 col-md-12">
+
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="question">
+                                <div class="question-header">
+                                    Вопрос 1 из 10
+                                </div>
+
+                                <div class="question-text">
+                                    Двигатели постоянного тока последовательного возбуждения
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-xl-6">
+
+                            <div id="question-rotated">
+
+                                <div class="front"><img src="img/预览图_千图网_编号25688649.jpg">
+                                </div>
+                                <div class="back">
+                                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, aliquam
+                                        ipsa. Ipsum quibusdam perferendis dolore natus quos cum veniam suscipit qui
+                                        corporis, iste rem assumenda exercitationem fugiat? Saepe, cupiditate blanditiis
+                                        libero voluptates voluptatum esse dicta magni aut tempora, corporis quasi totam
+                                        reprehenderit ipsa qui optio praesentium. Autem mollitia veritatis itaque.
+                                        <a href="#" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#staticBackdrop">Посмотреть полный ответ</a>
+                                    </span>
+
+                                </div>
+                                <div class="pop">
+                                    <button id='pop-button'>Посмотреть ответ</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- end main content -->
+
+                <!-- Sidebar -->
+                <div class="col-4">
+
+                    <div class="menu-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <div class="menu">
+                        <nav>
+                            <li><a href="#">Главная</a></li>
+                            <li><a href="#">О нас</a></li>
+                            <li><a href="#">Услуги</a></li>
+                            <li><a href="#">Контакты</a></li>
+                        </nav>
+                    </div>
+
+
+                </div>
+
+                <!-- End sidebar -->
+            </div>
+            <!-- footer -->
+            <div class="footer">
+                &#169;2021 Все права защищены
+            </div>
+
+            <!-- End footer -->
+        </div>
+
+        <!-- Модальное окно ответа -->
+        <!-- Scrollable modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Ответ на вопрос</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis eligendi commodi nihil, illum
+                        aliquid ipsa tempore mollitia corporis soluta tenetur saepe recusandae natus autem in distinctio
+                        fugit dolor, ut cum assumenda? Provident molestiae quidem unde, sunt fuga deleniti. Deserunt
+                        itaque odio tempore maxime voluptatibus excepturi at blanditiis quibusdam nemo explicabo facilis
+                        tempora delectus saepe tenetur, placeat illo molestias. Deleniti ratione earum vitae omnis ex.
+                        Sunt earum in reprehenderit officiis harum cum esse voluptate nihil temporibus quidem. Ex
+                        aliquid at impedit aperiam, voluptate maiores voluptatibus, perspiciatis velit vitae alias ipsa
+                        aliquam suscipit ipsum, quae reprehenderit optio a expedita harum corporis ab!
+                        <img src="img/预览图_千图网_编号25688649.jpg" alt="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Конец модального окна ответа -->
+
+
+
+        <!-- Модальное окно входа -->
+
+        <div class="modal fade" id="modal_auth" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modal_auth_label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal_auth_label">Авторизация</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="login" class="form-label">Логин</label>
+                                <input type="text" class="form-control" id="login">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Пароль</label>
+                                <input type="password" class="form-control" id="password">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Войти</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Конец модального окна входа -->
+
+
+        <!-- Модальное окно регистрации -->
+        <div class="modal fade" id="modal_reg" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modal_reg_label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal_reg_label">Регистрация</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="login" class="form-label">Логин</label>
+                                <input type="text" class="form-control" id="login">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Пароль</label>
+                                <input type="password" class="form-control" id="password">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password2" class="form-label">Повторите пароль</label>
+                                <input type="password" class="form-control" id="password2">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="first_name" class="form-label">Имя</label>
+                                <input type="text" class="form-control" id="first_name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="last_name" class="form-label">Фамилия</label>
+                                <input type="text" class="form-control" id="last_name">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Зарегестрироваться</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Конец модального окна регистрации -->
+
+
+
+
+
+
+    </div>
+
+</body>
+
+<script src="js/script.js"></script>
+
+</html>

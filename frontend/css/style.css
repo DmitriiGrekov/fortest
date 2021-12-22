@@ -1,0 +1,372 @@
+
+body, html{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Playfair Display', serif;
+}
+
+
+
+.wrapper {
+    position: relative;
+    min-height: 100vh;
+}
+
+/* nav */
+
+.top_nav {
+    margin-bottom: 20px;
+}
+
+.logo{
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+
+}
+
+.logo-for{
+    color: #f8554e;
+}
+
+.logo-test{
+    color:#04a763;
+}
+
+.select_questions select {
+    width: 100%;
+}
+
+/*Styling Selectbox*/
+.dropdown {
+width: 100%;
+display: inline-block;
+background-color: #fff;
+border-radius: 2px;
+box-shadow: 0 0 2px rgb(204, 204, 204);
+transition: all .5s ease;
+position: relative;
+font-size: 14px;
+color: #262626;
+text-align: left
+}
+
+.dropdown .select {
+    cursor: pointer;
+    display: block;
+    padding: 10px
+}
+.dropdown .select::after{
+     content: "▼";
+     float: right;
+     color: #262626;
+     font-size: 12px;
+}
+.dropdown .select > i {
+    font-size: 13px;
+    color: #888;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    float: right;
+    line-height: 20px
+}
+.dropdown:hover {
+    box-shadow: 0 0 4px rgb(204, 204, 204)
+}
+.dropdown:active {
+    background-color: #f8f8f8
+}
+.dropdown.active:hover,
+.dropdown.active {
+    box-shadow: 0 0 4px rgb(204, 204, 204);
+    border-radius: 2px 2px 0 0;
+    background-color: #f8f8f8
+}
+.dropdown.active .select > i {
+    transform: rotate(-90deg)
+}
+.dropdown .dropdown-menu {
+    position: absolute;
+    background-color: #fff;
+    width: 100%;
+    left: 0;
+    margin-top: 1px;
+    box-shadow: 0 1px 2px rgb(204, 204, 204);
+    border-radius: 0 1px 2px 2px;
+    overflow: hidden;
+    display: none;
+    max-height: 144px;
+    overflow-y: auto;
+    z-index: 9
+}
+.dropdown .dropdown-menu li {
+    padding: 10px;
+    transition: all .2s ease-in-out;
+    cursor: pointer
+} 
+.dropdown .dropdown-menu {
+    padding: 0;
+    list-style: none
+}
+.dropdown .dropdown-menu li:hover {
+    background-color: #f2f2f2
+}
+.dropdown .dropdown-menu li:active {
+    background-color: #e2e2e2
+}
+
+.nav_link ul{
+    display: flex;
+    padding: 0;
+}
+
+.nav_link ul li{
+    margin-right: 20px;
+    list-style-type: none;
+}
+
+.nav_link ul li a{
+    text-decoration: none;
+
+    color: black;
+}
+
+.nav_link ul li a:hover {
+    color: #ccc;
+}
+
+
+
+/* endnav */
+
+
+/* main content */
+#question-rotated{
+    width: 100%;
+    height: 500px;
+    border-radius: 5px;
+    position: relative;
+    perspective: 1000px;
+    margin-bottom: 20px;
+}
+
+#question-rotated .front, .back{
+    position: absolute;
+    width: 100%;
+    height: 500px;
+    left: 0;
+    padding: 10px;
+    top: 0;
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+    transition: 1s;
+    backface-visibility: hidden;
+    border-radius: 5px;
+    overflow: hidden;
+
+}
+
+.back {
+    z-index: 1000;
+}
+
+.pop{
+    z-index: 1000;
+    position: absolute;
+    width: 100%;
+    height: 500px;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    opacity: 0%;
+    transition: 0.7s;
+    border-radius: 5px;
+}
+
+.pop button{
+    padding: 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+    background-color: #ccc;
+    text-transform: uppercase;
+    transition: 0.2s;
+
+}
+
+.pop button:hover{
+    background-color: #545454;
+    color: #fff;
+    transition: 0.2s;
+}
+
+#question-rotated .back{
+    background-color: #ccc;
+    transform: rotateY(180deg);
+}
+#question-rotated:hover .pop{
+    opacity: 60%;
+}
+
+/* 
+#question-rotated:hover .front{
+    transform: rotateY(180deg);
+}
+#question-rotated:hover .back{
+    transform: rotateY(360deg);
+} */
+
+
+#question-rotated img{
+    width: 100%;
+    height: 500px;
+    border-radius: 5px;
+}
+
+.question{
+    background-color: #f2f2f2;
+    height: 500px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.question-header{
+    background-color: #ccc;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.question-text{
+    padding: 20px;
+    text-align: justify;
+}
+
+
+/* endmaincontent */
+
+
+
+
+/* sidebar */
+
+.menu-btn {
+    display: none;
+	width: 30px;
+	height: 30px;
+	position: relative;
+	z-index:2;
+	overflow: hidden;
+}
+.menu-btn span {
+	width: 30px;
+	height: 2px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #222222;
+	transition: all 0.5s;
+}
+.menu-btn span:nth-of-type(2) {
+	top: calc(50% - 5px);
+}
+.menu-btn span:nth-of-type(3) {
+	top: calc(50% + 5px);
+}
+
+.menu nav li{
+    list-style-type: none;
+}
+
+.menu nav li a{
+    color: #000;
+    text-decoration: none;
+}
+.menu nav li a:hover{
+
+    color: #ccc;
+}
+
+.menu{
+    border-left: 1px solid #e6e6e6;
+    height: 500px;
+    padding-left: 10px;
+}
+
+@media(max-width: 992px){
+.menu {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding: 15px;
+background: #f2f2f2;
+	transform: translateX(100%);
+	transition: transform 0.5s; 
+}
+.menu.active {
+	transform: translateX(0);
+}
+.menu nav{
+    margin-top: 60px;
+    float: right;
+}
+.menu li {
+	list-style-type: none;
+    
+}  
+    .menu-btn {
+        display: block;
+        position: fixed;
+        top: 20px;
+        left: 90%;
+    }
+    /* Меняем гамбургер иконку, когда меню открыто */
+.menu-btn.active span:nth-of-type(1) {
+display: none;
+}
+.menu-btn.active span:nth-of-type(2) {
+top: 50%;
+transform: translate(-50%, 0%) rotate(45deg);  
+}
+.menu-btn.active span:nth-of-type(3) {
+top: 50%;
+transform: translate(-50%, 0%) rotate(-45deg); 
+}
+.nav_link ul{
+    margin-top: 20px;
+}
+
+.dropdown{
+    margin-top: 10px;
+}
+}
+/* endsidebar */
+
+
+
+
+
+/* footer */
+.footer{
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translate(-50%, 10px);
+    padding-bottom: 20px;
+}
+
+
+/* end footer */
+
+
+/* Модальное окно ответа */
+
+
+/* Конец модлаьного окна ответа */

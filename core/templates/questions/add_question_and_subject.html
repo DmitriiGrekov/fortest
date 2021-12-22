@@ -1,0 +1,139 @@
+{% extends '../main/base.html' %}
+
+{% block content %}
+
+<div class="col-lg-8">
+
+    <div class="row">
+        <div class="col-lg-12 question_form">
+            <h4 class='mb-3'>Добавление вопросов по предмету {{ subject.title }}</h4>
+            
+            <form action="">
+                {% csrf_token %}
+                <div id="question_form">
+                    <div class="row mb-3">
+                    <div class="col-lg-6 mb-3">
+                        <label for="question">Вопрос 1</label>
+                        <textarea id="question1" name="question1" rows=20></textarea>
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="answer">Ответ на вопрос 1</label>
+                        <textarea id="answer1" name="answer1" rows=20></textarea>
+                    </div>
+                    </div>
+                    <hr>
+                </div>
+                
+            </form>
+
+            <button id='add_question' class='btn btn-success'>Еще вопрос</button>
+            <button id='save_questions' class='btn btn-primary'>Сохранить</button>
+
+
+                <script>
+
+                   
+
+                    tinymce.init({
+                        selector: '#question1',
+                        plugins: 'a11ychecker advcode casechange export formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+                        toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter pageembed permanentpen table',
+                        toolbar_mode: 'floating',
+                        tinycomments_mode: 'embedded',
+                        tinycomments_author: 'Author name',
+                        });
+
+                    tinymce.init({
+                        selector: '#answer1',
+                        plugins: 'a11ychecker advcode casechange export formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+                        toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter pageembed permanentpen table',
+                        toolbar_mode: 'floating',
+                        tinycomments_mode: 'embedded',
+                        tinycomments_author: 'Author name',
+                        });
+
+                    question_num = 1
+                    $('#add_question').click(function(){
+                        question_num ++
+                        question_form = $('#question_form')
+
+                        new_form = `
+                        <div class="row mb-3">
+                    <div class="col-lg-6 mb-3">
+                        <label for="question${question_num}">Вопрос ${question_num}</label>
+
+                        <textarea id="question${question_num}" name="question${question_num}" rows=20></textarea>
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <label for="answer${question_num}">Ответ на вопрос ${question_num}</label>
+                        <textarea id="answer${question_num}" name="answer${question_num}" rows=20></textarea>
+                    </div>
+                    </div>
+                    <hr>
+                        `
+                        question_form.append(new_form)
+
+                    tinymce.init({
+                        selector: `#question${question_num}`,
+                        plugins: 'a11ychecker advcode casechange export formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+                        toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter pageembed permanentpen table',
+                        toolbar_mode: 'floating',
+                        tinycomments_mode: 'embedded',
+                        tinycomments_author: 'Author name',
+                        });
+
+                    tinymce.init({
+                        selector: `#answer${question_num}`,
+                        plugins: 'a11ychecker advcode casechange export formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+                        toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter pageembed permanentpen table',
+                        toolbar_mode: 'floating',
+                        tinycomments_mode: 'embedded',
+                        tinycomments_author: 'Author name',
+                        });
+
+                    })
+
+                        
+
+
+
+                    $('#save_questions').click(function(e){
+                        e.preventDefault()
+                        data = {}
+                        for(var i=1; i<question_num+1;i++){
+                            question = tinyMCE.get(`question${i}`).getContent()
+                            answer = tinyMCE.get(`answer${i}`).getContent()
+
+                            data[`question${i}`] = [question, answer]
+
+                            csrf = $('body > div.container > div.wrapper > div.row > div.col-lg-8 > div > div > form > input[type=hidden]').val()
+                            data['csrfmiddlewaretoken'] = csrf
+                        }
+
+                        $.ajax({
+                            url: '',
+                            method: 'post',
+                            data: data,
+                            success: function(data){
+                                if(data['status'] == 201){
+                                    host = localStorage.getItem('host')
+                                    window.location.replace(`${host}/questions/subject/list/`);
+
+                                }
+                            }
+                        });
+                        
+                    })
+                        
+                </script>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+{% endblock content %}

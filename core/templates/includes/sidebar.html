@@ -1,0 +1,25 @@
+<div class="col-4">
+
+                    <div class="menu-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <div class="menu">
+                       <nav>
+                            <li><a href="{% url 'index' %}">Главная</a></li>
+
+                       {% if user.is_authenticated %}
+                            <li><a href="#" data-bs-toggle="modal" data-bs-target="#modal_add_subject">Добавить предмет</a></li>
+                            <li><a href="{% url 'questions:list' %}">Мои предметы</a></li>
+
+                       {% endif %} 
+                            <li><a href="#">О нас</a></li>
+                            <li><a href="#">Контакты</a></li>
+                        </nav>
+                    </div>
+
+
+                </div>
+

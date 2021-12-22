@@ -1,0 +1,38 @@
+{% extends '../main/base.html' %}
+
+{% block content %}
+
+
+
+<div class="col-12 col-lg-8 col-xl-8 col-sm-12 col-md-12">
+    {% if subjects %}
+    
+   {% for subject in subjects %}
+   <div class="card mb-3">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    <a href="{% url 'questions:all_questions' subject_pk=subject.pk %}" title='Посмотреть вопросы и ответы' class='subject_title'>
+                        <h5 class="card-title">{{ subject.title }}</h5>
+                    </a>
+                </div>
+
+                <div class="col-lg-6 float-end">
+                    <a href="#" class="btn btn-primary">Учить</a>
+                    <a href="{% url 'questions:add_question' subject_pk=subject.pk %}" class="btn btn-success">Добавить вопросы</a>
+                    <a href="{% url 'questions:delete' pk=subject.pk %}" class="btn btn-danger">Удалить</a>
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+   {% endfor %} 
+   {% else %}
+
+            <h4 class='mb-3'>Вы не добавили ни одного предмета</h4>
+
+    {% endif %}
+</div>
+
+{% endblock content %}

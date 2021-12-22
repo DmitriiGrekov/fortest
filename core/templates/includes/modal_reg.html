@@ -1,0 +1,46 @@
+ <div class="modal fade" id="modal_reg" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modal_reg_label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal_reg_label">Регистрация</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method='POST' class='reg_form' action="{% url 'accounts:register' %}">
+                            <div class="modal_reg_info">
+                            </div>
+
+
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="login" class="form-label">Логин</label>
+                                {{ reg_form.username }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Пароль</label>
+                                {{ reg_form.password }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="password2" class="form-label">Повторите пароль</label>
+                                {{ reg_form.password1 }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                {{ reg_form.email }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="first_name" class="form-label">Имя</label>
+                                {{ reg_form.first_name }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="last_name" class="form-label">Фамилия</label>
+                                {{ reg_form.last_name }}
+                            </div>
+                            <button type="submit" class="btn btn-primary">Зарегестрироваться</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>

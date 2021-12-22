@@ -1,0 +1,83 @@
+{% extends './base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+<div class="col-12 col-lg-8 col-xl-8 col-sm-12 col-md-12">
+
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="question">
+                                {% if user.is_authenticated %}
+                                    <div class="question-header">
+                                        Вопрос {{ count_user_questions }} из {{ count_questions }} 
+                                    </div>
+                                {% else %}
+                                    <div class="question-header">
+                                        Необходима авторизация
+                                    </div>
+                                {% endif %}
+                                
+
+                               <i></i> 
+                               {% if user.is_authenticated %}
+                                    <div class="question-text">
+                                        {% if no_questions %}
+                                            {{ no_questions }} 
+                                        {% elif user.current_questions %}
+                                            {{ user.current_questions.question |safe}}
+                                        {% else %}
+                                            Выберите предмет 
+                                        {% endif %}
+                                        
+                                    </div>
+                                {% else %}
+                                    <div class="question-text">
+                                        Необходима авторизация
+                                    </div>
+                               {% endif %}
+
+                            </div>
+
+                            {% if current_subject_user %}
+                            
+                            <a href="{% url 'accounts:random_question' subject_pk=current_subject_user.pk %}" class='ml-3 mb-3 btn btn-primary'>Следующий вопрос</a>
+                            {% endif %}
+                        </div>
+
+                        <div class="col-xl-6">
+
+                            <div id="question-rotated">
+
+                                <div class="front">
+                                    <img src="{% static 'img/预览图_千图网_编号25688649.jpg' %}">
+                                </div>
+                                <div class="back">
+                                    {% if user.is_authenticated %}
+
+                                    <span>{{ user.current_questions.answer_question.first.answer |truncatechars:700|safe}}
+                                        <a href="#" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#staticBackdrop">Посмотреть полный ответ</a>
+                                    </span>
+                                    {% else %}
+                                    Необходима авторизация
+                                    {% endif %}
+                                    
+
+                                </div>
+                                <div class="pop">
+                                    <button id='pop-button'>Посмотреть ответ</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+{% endblock content %}

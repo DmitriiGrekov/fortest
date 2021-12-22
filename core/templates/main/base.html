@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/6zwb1w1y4mgm9l95f973lfew85x35xuij3ou268qsa1io86t/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+
+
+    <title>Fortest</title>
+
+    <script>
+        localStorage.setItem('host', 'http://127.0.0.1:8000')
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="wrapper">
+            <!-- Navbar -->
+                {% include '../includes/header.html' %} 
+            <!-- end navbar -->
+
+
+            <div class="row">
+
+                <!-- Main Content -->
+                <div class="info">
+                    
+                </div>
+                {% if messages %}
+                    <div class="message_block">
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %} 
+                </div>
+                {% endif %}
+               {% block content %}
+
+               {% endblock content %} 
+                <!-- end main content -->
+
+                <!-- Sidebar -->
+                {% include '../includes/sidebar.html' %}
+                <!-- End sidebar -->
+            </div>
+            <!-- footer -->
+            
+                {% include '../includes/footer.html' %}
+            <!-- End footer -->
+        </div>
+
+        <!-- Модальное окно ответа -->
+        <!-- Scrollable modal -->
+            {% include '../includes/modal_question.html' %}
+        <!-- Конец модального окна ответа -->
+
+
+
+        <!-- Модальное окно входа -->
+
+       {% include '../includes/modal_auth.html' %} 
+
+        <!-- Конец модального окна входа -->
+
+
+        <!-- Модальное окно регистрации -->
+        
+        {% include '../includes/modal_reg.html' %}
+
+
+        <!-- Конец модального окна регистрации -->
+
+
+        {% include '../includes/modal_add_questions.html' %}
+
+
+<div id="lightbox" style='display: none;'>
+        <a href="#">&#10006;</a>
+        <span></span>
+    </div>
+
+    </div>
+
+
+</body>
+
+<script src="{% static 'js/script.js' %}"></script>
+
+<script>
+    $('.drop-item').click(function(){
+        pk = $(this).attr('data-pk')
+        csrftoken = $('body > div > div.wrapper > div.top_nav > div.top-menu > div > div.col-xl-8.col-sm-12.col-md-12.col-lg-8.col-12 > div > ul > input[type=hidden]').val()
+        data = {'subject_pk': pk,
+                'csrfmiddlewaretoken': csrftoken}
+        $.post("{% url 'accounts:add_current_subject'%}", data, function (data, textStatus, xhr) {
+            console.log(data)
+            if (data.status == 201) {
+                host = localStorage.getItem('host')
+                window.location.replace(host);
+            }
+            else if (data.status == 500){
+                host = localStorage.getItem('host')
+                window.location.replace(host)
+            }
+            else {
+
+                $('.modal_reg_info').empty()
+                $('.modal_reg_info').css('background-color', '#f85e5e')
+                $('.modal_reg_info').css('display', 'block')
+                for (var key in data.errors){
+                    $('.modal_reg_info').append(data.errors[key] + '<br>')
+                }
+            }
+
+        })
+
+    })
+</script>
+
+<script>
+ var image_question = document.querySelectorAll('#question-rotated > div.back > span > p > img')
+    for(i=0;i<image_question.length;i++){
+        image_question[i].addEventListener('click', function(){
+            $('#lightbox > span').css('background-image', `url('${this.src}')`)
+            $('#lightbox').css('display', 'block')
+        })
+    }
+    console.log($('#lightbox > a'))
+    $('#lightbox > a').click(function(e){
+        e.preventDefault()
+        $('#lightbox').css('display', 'none')
+    })
+</script>
+
+</html>
